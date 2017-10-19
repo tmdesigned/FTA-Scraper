@@ -13,6 +13,12 @@ $('body').on('click','.js-remove-filter',function(){
   showAllItems();
 });
 
+$('body').on('click','.js-show-button',function(){
+  var imageElement = $(this).parent().parent().parent().find('.card-img-top');
+  imageElement.prop('src',imageElement.data('src')).removeClass('hidden');
+  $(this).remove();
+});
+
 $('body').on('click','.js-update',function(){
   var auctionName = $('#auction-name').val();
   if(auctionName == ""){
@@ -117,8 +123,7 @@ $('body').on('click','.js-update',function(){
       var auctionString = '<li class="auction-item"><div class="auction-header"><a target="_blank" href="'+auctions[i]['url']+'">Auction #'+auctions[i]['id']+'</a> <span class="end-date">Ends: '+friendlyDate+'</span></div>';
       auctionString += '<ol class="row">';
       for(var j=0;j<auctions[i]['items'].length;j++){
-        //<img class="card-img-top" src="'+auctions[i]['items'][j]['photo_url']+'">
-        auctionString += '<li class="col-xs-12 col-sm-6 col-md-3"><div class="card"><div class="card-body"><a class="card-title" target="_blank" href="' + auctions[i]['items'][j]['url'] + '">' + auctions[i]['items'][j]['description'] + '</a><br /><span class="condition">' + auctions[i]['items'][j]['condition'] + '</span></div></div></li>';
+        auctionString += '<li class="col-xs-12 col-sm-6 col-md-3"><div class="card"><img class="card-img-top hidden" data-src="'+auctions[i]['items'][j]['photo_url']+'"><div class="card-body"><a class="card-title" target="_blank" href="' + auctions[i]['items'][j]['url'] + '">' + auctions[i]['items'][j]['description'] + '</a><br /><span class="condition">' + auctions[i]['items'][j]['condition'] + '</span><div><a href="'+auctions[i]['items'][j]['url']+'" class="btn btn-xs btn-success">Open</a><button style="float:right" class="js-show-button btn btn-xs btn-secondary">Load Image</button></div></div></div></li>';
       }
       auctionString += '</ol></li>';
       $('.auction-list').append(auctionString);

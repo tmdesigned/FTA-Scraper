@@ -97,6 +97,10 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+   .hidden{
+     display:none;
+   }
+
    .btn{
      cursor:pointer;
    }
