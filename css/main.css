@@ -103,6 +103,11 @@ textarea {
 
    .btn{
      cursor:pointer;
+
+    padding: .25em;
+    font-size: 80%;
+    text-transform: uppercase;
+
    }
 
    .auction-list {
@@ -126,6 +131,7 @@ textarea {
     .auction-item .row {
         list-style: none;
         padding-left: 0;
+        overflow: auto;
         font-size: 80%;
     }
 
@@ -321,4 +327,55 @@ textarea {
     h3 {
         page-break-after: avoid;
     }
+}
+
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.jumbotron {
+    padding: 2em;
+    background-color: #eee;
+}
+
+.container {
+    margin: 2em;
+    padding: .5em;
+}
+
+.row li {
+    width: 250;
+    /* float: left; */
+    display: block;
+    overflow: hidden;
+    margin: 1em;
+    border: 1px solid #ccc;
+    padding: 1em;
+    flex: 1 1 275px;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+.btn, button {
+    display: inline-block;
+    background: #555;
+    border: 0;
+    padding: .25em .5em;
+    color: #fff;
+    border-radius: 3px;
+    text-decoration: none;
+}
+
+body {
+    font-family: sans-serif;
+}
+
+h1,h2,h3,h4,h5,h6,a {
+    color: darkslateblue;
 }
