@@ -1,24 +1,39 @@
+(function(){
 
 var auctions;
 var locations;
 
+$(document).ready(function(){
+  showLoading();
+  getLocations();
+  getDefault();
+});
+
+/* LISTENERS */
+
+//Filter/search button clicked
 $('body').on('click','.js-filter',function(){
   showAllItems();
   showAllAuctions();
   filter($('.js-auction-filter').val());
   removeEmptyAuctions();
+  updateSearchHeaderText();
 });
 
+//Filter reset clicked
 $('body').on('click','.js-remove-filter',function(){
   showAllItems();
+  $('.js-results-header').empty();
 });
 
+//Show related image clicked (not by default for bandwidth)
 $('body').on('click','.js-show-button',function(){
   var imageElement = $(this).parent().parent().parent().find('.card-img-top');
   imageElement.prop('src',imageElement.data('src')).removeClass('hidden');
   $(this).remove();
 });
 
+//Fetch and Cache results clicked
 $('body').on('click','.js-update',function(){
   var auctionName = $('#auction-name').val();
   if(auctionName == ""){
@@ -46,15 +61,7 @@ $('body').on('click','.js-update',function(){
    });
 });
 
-  $(document).ready(function(){
-    showLoading();
-    getLocations();
-    getDefault();
-
-
-
-  });
-
+  //Grabs available location choices
   function getLocations(){
     $.ajax({
 
@@ -72,6 +79,7 @@ $('body').on('click','.js-update',function(){
      });
   }
 
+  //Pulls cached results if available
   function getDefault(){
     $.ajax({
 
@@ -90,6 +98,7 @@ $('body').on('click','.js-update',function(){
      });
   }
 
+  //Updates the header text with current location
   function updateCurrentLocation(){
     if(auctions.length > 0){
       var thisLocation = auctions[0]['location'];
@@ -99,6 +108,7 @@ $('body').on('click','.js-update',function(){
     }
   }
 
+  //Adds locations to dropdown
   function updateLocations(){
     var locationsContent = locations["content"];
     for(var i=0;i<locationsContent.length;i++){
@@ -106,14 +116,17 @@ $('body').on('click','.js-update',function(){
     }
   }
 
+  //Updates header text with # auctions
   function updateCounts(){
     $('.js-auction-count').text(auctions.length);
   }
 
+  //Temporary loading screen for fetching results
   function showLoading(){
     $('.auction-list').html('<em>Loading...</em>');
   }
 
+  //Loops through auctions and displays auctions and their items
   function updateList(){
     $('.auction-list').empty();
 
@@ -131,14 +144,17 @@ $('body').on('click','.js-update',function(){
     }
   }
 
+  //Unhides filtered items
   function showAllItems(){
     $('.auction-item li').show();
   }
 
+  //Unhides filtered auctions (ones that had 0 results)
   function showAllAuctions(){
     $('.auction-item').show();
   }
 
+  //Hides an auction if no items that aren't filtered out
   function removeEmptyAuctions(){
     $('.auction-item').each(function(){
         //Hide if no li's that aren't display:none
@@ -158,6 +174,8 @@ $('body').on('click','.js-update',function(){
     });
   }
 
+  //"Search" engine
+  //Treats each term separately so that order doesn't matter
   function filter(keywords){
     keywords = keywords.toLowerCase();
     var keywordArray = keywords.split(' ');
@@ -180,3 +198,21 @@ $('body').on('click','.js-update',function(){
 
     });
   }
+
+  //Writes header of search engine i.e. 3 results for _____
+  function updateSearchHeaderText(){
+    $('.js-results-header').text(countResults() + ' results for: ' + $('.js-auction-filter').val());
+  }
+
+  //Count "Surviving" items i.e. search matches
+  function countResults(){
+    var count = 0;
+    $('.auction-item li').each(function(){
+      if($(this).css('display') != "none"){
+        count++;
+      }
+    });
+    return count;
+  }
+
+})();

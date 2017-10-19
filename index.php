@@ -42,6 +42,7 @@
           </div>
         </div>
         <div class="container">
+          <h5 class="js-results-header"></h5>
           <ul class="auction-list"></ul>
         </div>
         <script src="js/vendor/modernizr-3.5.0.min.js"></script>
