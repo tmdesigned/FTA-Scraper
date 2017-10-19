@@ -99,6 +99,7 @@ class scraper implements JsonSerializable{
 				$output_auction->set_end_datetime($auction_date);
 				$output_auction->set_url($auction_url);
 				$output_auction->set_base_name($auction_base_name);
+				$output_auction->set_location($this->search_term);
 
 				array_push($this->auctions,$output_auction);
 			}

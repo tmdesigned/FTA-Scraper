@@ -3,6 +3,7 @@
     private $id;
     private $description;
 		private $condition;
+		private $photo_url;
 		private $url;
 
     function __construct($id) {
@@ -43,6 +44,14 @@
 
 		function get_url(){
 			return $this->url;
+		}
+
+		function set_photo_url($photo_url){
+			$this->photo_url = $photo_url;
+		}
+
+		function get_photo_url(){
+			return $this->photo_url;
 		}
 	}
 ?>

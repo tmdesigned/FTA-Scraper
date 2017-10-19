@@ -97,8 +97,37 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+   .btn{
+     cursor:pointer;
+   }
 
+   .auction-list {
+       padding-left: 0;
+       list-style: none;
+       margin-bottom: 3em;
+   }
 
+   .auction-header {
+      display: block;
+      margin-bottom: 1em;
+      border-bottom: 2px solid #ddd;
+    }
+
+    .end-date{
+      color:#bbb;
+      font-style:italic;
+      font-size:90%;
+    }
+
+    .auction-item .row {
+        list-style: none;
+        padding-left: 0;
+        font-size: 80%;
+    }
+
+    .card{
+      margin-bottom:3em;
+    }
 
 
 

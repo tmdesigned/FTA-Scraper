@@ -2,6 +2,7 @@
 	class auction implements JsonSerializable{
     private $id;
     private $url;
+		private $location;
     private $end_datetime;
 		private $base_name;
     private $items = array();
@@ -62,6 +63,8 @@
             $output_item->set_condition($condition[1]);
           }
 
+					$output_item->set_photo_url('http://d2c3kiufvhjdfg.cloudfront.net/Pics/'.$item_id.'t.jpg');
+
 					//Compute the item URL
 					//   base url + auction base name + auction id + / + item id
 					//   i.e. https://bid.bidfta.com/cgi-bin/mnlist.cgi?schooliii1281/HQ792094
@@ -109,5 +112,13 @@
     function get_base_name(){
       return $this->base_name;
     }
+
+		function set_location($location){
+			$this->location = $location;
+		}
+
+		function get_location(){
+			return $this->location;
+		}
 	}
 ?>
