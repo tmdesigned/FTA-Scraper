@@ -1,11 +1,6 @@
 <?php
 
-$url = 'http://bidfta.bidqt.com/BidFTA/services/invoices/queryExecutor/queries/FTALocations?size=50';
-
-
-//Encode POST values
-foreach($fields as $key=>$value) { $fields_string .= $key.'='.$value.'&'; }
-rtrim($fields_string, '&');
+$url = 'http://bidfta.bidqt.com/BidFTA/services/invoices/queryExecutor/queries/FTALocations?size=100';
 
 //CURL request
 $ch = curl_init();
